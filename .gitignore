@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+.npm
+dist/
+build/
+
+# Docker databases
+docker-data/
+mysql-data/
+
+# Uploaded images (Không nên đẩy ảnh lên Git để tránh repo bị quá nặng)
+denhoamy_api/uploads/
+denhoamy_api/uploads/*
+!denhoamy_api/uploads/.gitkeep
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Editor / IDE
+.vscode/
+.idea/
+.vs/
+
+# Debug artifacts
+check_fks_output.json
+
+# Root npm (deps live in my-vue-app/)
+/package.json
+/package-lock.json
+
+# Visual Studio / legacy editor
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS folders
+.DS_Store
+Thumbs.db

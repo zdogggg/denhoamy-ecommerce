@@ -1,0 +1,86 @@
+services:
+  # ====== MySQL Database ======
+  db:
+    image: mysql:8.0
+    container_name: denhoamy_db
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --init-connect='SET NAMES utf8mb4'
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./denhoamy_db.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/custom.cnf
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ====== PHP API (Apache) ======
+  api:
+    build:
+      context: ./denhoamy_api
+      dockerfile: Dockerfile
+    container_name: denhoamy_api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      JWT_SECRET: ${JWT_SECRET}
+      PAYOS_CLIENT_ID: ${PAYOS_CLIENT_ID}
+      PAYOS_API_KEY: ${PAYOS_API_KEY}
+      PAYOS_CHECKSUM_KEY: ${PAYOS_CHECKSUM_KEY}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      RESEND_API_KEY: ${RESEND_API_KEY}
+      RESEND_FROM_EMAIL: ${RESEND_FROM_EMAIL:-noreply@denhoamy.com}
+      RESEND_FROM_NAME: ${RESEND_FROM_NAME:-Đèn Hoa Mỹ}
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      GROQ_MODEL: ${GROQ_MODEL:-meta-llama/llama-4-scout-17b-16e-instruct}
+    ports:
+      - "127.0.0.1:8080:80"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./denhoamy_api:/var/www/html
+
+  # ====== Vue Frontend (Nginx) ======
+  frontend:
+    build:
+      context: ./my-vue-app
+      dockerfile: Dockerfile
+    container_name: denhoamy_frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:80"
+    depends_on:
+      - api
+
+  # ====== phpMyAdmin (Database Management) ======
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: denhoamy_pma
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

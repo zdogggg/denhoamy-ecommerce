@@ -1,0 +1,16 @@
+# Bỏ qua tất cả các thư mục node_modules ở bất kỳ đâu
+node_modules/
+**/node_modules/
+
+# Bỏ qua các file cấu hình môi trường (chứa mật khẩu database)
+.env
+.env.*
+!.env.production
+
+# Bỏ qua thư mục thư viện PHP (nếu denhoamy_api dùng Laravel/PHP)
+vendor/
+**/vendor/
+
+# Bỏ qua các file tạm của hệ thống
+.DS_Store
+Thumbs.db

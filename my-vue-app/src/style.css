@@ -1,0 +1,209 @@
+/* 1. Reset toàn bộ để không còn khoảng trắng thừa */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f7f8fa;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+/* 2. Cấu hình cho thẻ bao ngoài cùng của Vue */
+#app {
+  width: 100% !important;
+  max-width: none !important;
+  /* Dùng !important để ép nó bỏ cái 1280px đi */
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+/* 3. Tinh chỉnh các thành phần của Element Plus cho khớp layout */
+.el-container {
+  height: 100%;
+}
+
+.el-aside {
+  background-color: #304156;
+  color: #fff;
+  border-right: none;
+}
+
+.el-header {
+  background-color: #fff;
+  color: #333;
+  line-height: 60px;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 4. Định dạng lại các thẻ text cho đồng nhất */
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+/* Xóa viền đen khi focus vào các nút hoặc link */
+*:focus {
+  outline: none;
+}
+
+/* 5. Hiệu ứng Micro-animations & Màu sắc Luxury */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-in-out forwards;
+}
+
+/* Nâng cấp toàn bộ thẻ sản phẩm để mang phong cách Luxury */
+.product-card {
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  border-color: #eaeaea !important;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  position: relative;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  /* Đảm bảo các thẻ có chiều cao bằng khít nhau trong dòng */
+}
+
+/* Đảm bảo khung chứa ảnh giữ tỉ lệ chuẩn */
+.product-card .product-img {
+  width: 100% !important;
+  height: 250px !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+}
+
+/* Đảm bảo cả phần thân trong của Element Plus el-card cũng co dãn tỉ lệ */
+.product-card .el-card__body {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+  height: 100% !important;
+}
+
+.product-card .product-info {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+  /* Tự động dãn để chiếm trọn phần trống */
+  justify-content: flex-start !important;
+  padding: 15px !important;
+  text-align: center !important;
+}
+
+/* Tag hàng mới về nằm ngay sát tinh tế dưới tên sản phẩm */
+.product-card .tag-new-arrival {
+  margin: 4px auto 6px auto !important;
+  /* Nằm ngay ngắn dưới tên */
+}
+
+
+/* Đẩy giá bán tụt sát gần nút */
+.product-card .price-box,
+.product-card .price-row {
+  margin-top: 10px !important;
+  /* Gộp nhóm thông tin liền mạch */
+  margin-bottom: 12px !important;
+}
+
+/* Đẩy cố định nút "Thêm vào giỏ" nằm kịch sàn dưới đáy */
+.product-card .add-to-cart-btn {
+  margin-top: auto !important;
+  /* Chỉ đẩy duy nhất nút xuống đáy để thẳng hàng */
+  width: 100% !important;
+  flex-shrink: 0 !important;
+}
+
+
+.product-card ::-webkit-scrollbar {
+  display: none !important;
+}
+
+.product-card {
+  scrollbar-width: none !important;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+  border-color: #C5A059 !important;
+}
+
+/* Zoom ảnh sản phẩm nhẹ nhàng */
+.product-card .el-image {
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+
+.product-card:hover .el-image {
+  transform: scale(1.06) !important;
+}
+
+/* Hover mượt cho các nút mua hàng/thêm giỏ */
+.el-button--primary,
+.gold-btn,
+.add-to-cart-btn {
+  transition: all 0.4s ease-in-out !important;
+}
+
+.el-button--primary:hover,
+.gold-btn:hover,
+.add-to-cart-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(197, 160, 89, 0.25) !important;
+}
+
+/* Custom New Arrival Tag Badge - Luxury Mint style */
+.tag-new-arrival {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e6f7ed !important;
+  /* Nền xanh mint nhạt cực dịu mắt */
+  color: #1f8a4c !important;
+  /* Chữ xanh đậm ngọc bích sắc nét */
+  font-size: 11px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: bold !important;
+  padding: 4px 10px !important;
+  border-radius: 4px !important;
+  margin-top: 8px !important;
+  margin-bottom: 2px !important;
+  letter-spacing: 0.3px !important;
+  transition: all 0.3s ease !important;
+  width: fit-content !important;
+  border: 1px solid rgba(31, 138, 76, 0.15) !important;
+  line-height: 1.2 !important;
+}
+
+.tag-new-arrival:hover {
+  background-color: #d1f2de !important;
+  transform: translateY(-1px) !important;
+}
