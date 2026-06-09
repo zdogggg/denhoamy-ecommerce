@@ -301,6 +301,7 @@ denhoamy-ecommerce/
 | Database Design | [docs/DATABASE_DESIGN.md](docs/DATABASE_DESIGN.md) | ERD, 21 bảng, migrations |
 | Architecture | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Kiến trúc, luồng dữ liệu, bảo mật |
 | Hạn chế đồ án | [docs/HAN_CHE_DO_AN.md](docs/HAN_CHE_DO_AN.md) | Hạn chế hệ thống + hướng phát triển (báo cáo) |
+| Slide bảo vệ | [docs/presentation/README.md](docs/presentation/README.md) | Outline 38 slide, sơ đồ, demo script, Q&A appendix |
 | Views Map | [my-vue-app/docs/VIEWS_MAP.md](my-vue-app/docs/VIEWS_MAP.md) | Bản đồ views + components |
 | Setup Guide | [README_SETUP.md](README_SETUP.md) | Hướng dẫn cài đặt chi tiết |
 
