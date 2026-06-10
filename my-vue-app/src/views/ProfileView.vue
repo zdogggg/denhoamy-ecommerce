@@ -266,7 +266,7 @@ const loadingWishlist = ref(false)
 
 const fetchWishlists = async () => {
   loadingWishlist.value = true
-  const res = await getWishlist(authStore.user.id)
+  const res = await getWishlist()
   loadingWishlist.value = false
   if (res && res.success) {
     wishlists.value = res.data
@@ -274,7 +274,7 @@ const fetchWishlists = async () => {
 }
 
 const handleRemoveWishlist = async (productId) => {
-  const res = await toggleWishlist(authStore.user.id, productId)
+  const res = await toggleWishlist(productId)
   if (res && res.success) {
     ElMessage.success('Đã xóa khỏi danh sách yêu thích')
     fetchWishlists()

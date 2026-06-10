@@ -410,6 +410,8 @@ CREATE TABLE `products` (
   `price` decimal(15,2) NOT NULL,
   `cost_price` decimal(15,0) DEFAULT '0',
   `old_price` decimal(15,2) DEFAULT '0.00',
+  `price_before_hot_deal` decimal(15,2) DEFAULT NULL,
+  `old_price_before_hot_deal` decimal(15,2) DEFAULT NULL,
   `is_hot_deal` tinyint(1) NOT NULL DEFAULT '0',
   `stock` int DEFAULT '15',
   `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -945,6 +947,7 @@ CREATE TABLE `product_variants` (
   `anh_sang` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `cost_price` decimal(15,2) DEFAULT '0.00',
   `price` decimal(15,2) NOT NULL,
+  `price_before_hot_deal` decimal(15,2) DEFAULT NULL,
   `stock` int DEFAULT '0',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

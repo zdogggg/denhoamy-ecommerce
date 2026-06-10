@@ -520,10 +520,15 @@ if ($method === 'PUT') {
                 }
             }
 
-            hotDealCaptureSnapshot($pdo, (int) $id);
-            $stmt = $pdo->prepare('UPDATE products SET is_hot_deal = 1 WHERE id = ?');
-            $stmt->execute([$id]);
-            echo json_encode(['success' => true, 'message' => 'Đã thêm vào Hot Deal']);
+            try {
+                hotDealCaptureSnapshot($pdo, (int) $id);
+                $stmt = $pdo->prepare('UPDATE products SET is_hot_deal = 1 WHERE id = ?');
+                $stmt->execute([$id]);
+                echo json_encode(['success' => true, 'message' => 'Đã thêm vào Hot Deal']);
+            } catch (Exception $e) {
+                http_response_code(500);
+                echo json_encode(['success' => false, 'message' => 'Lỗi thêm Hot Deal: ' . $e->getMessage()]);
+            }
             exit();
         }
 

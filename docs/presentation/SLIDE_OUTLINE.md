@@ -150,6 +150,47 @@
 
 ---
 
+## Slide 9+ — Giải pháp đề xuất
+
+> Slide tổng quan mở đầu phần **Thiết kế hệ thống** — layout 2 cột: thành phần (trái) + sơ đồ luồng (phải).
+
+### Cột trái — Các thành phần hệ thống
+
+| # | Thành phần | Mô tả ngắn |
+|---|------------|------------|
+| 1 | **Website thương mại điện tử** | Giao diện sang trọng, hiện đại — phù hợp ngành đèn trang trí; Vue 3 SPA responsive |
+| 2 | **Hệ thống quản trị (Admin)** | Quản lý tập trung SP, đơn hàng, kho, khách hàng, mã giảm giá — **gồm cả thống kê báo cáo** (Dashboard) |
+| 3 | **Chatbot AI tư vấn** | Hỗ trợ 24/7, tra cứu sản phẩm/tồn kho thực tế qua Groq LLaMA 4 — **tích hợp sẵn trên Website** |
+| 4 | **Thanh toán PayOS** | QR Banking, xác nhận giao dịch tự động qua webhook — **chỉ khi khách chọn thanh toán online** |
+| 5 | **Backend API + CSDL** | PHP 8.2 REST API + MySQL 21 bảng — xử lý nghiệp vụ, bảo mật JWT/RBAC |
+
+**Ghi chú trình bày:** Không tách “quản lý bán hàng” và “thống kê” thành 2 hệ thống riêng — đó là các module trong cùng Admin Dashboard.
+
+### Cột phải — Sơ đồ luồng hệ thống
+
+**Visual:** Sơ đồ **D13** trong [SLIDE_DIAGRAMS.md](SLIDE_DIAGRAMS.md)
+
+**Luồng đúng (không gộp Chatbot + PayOS):**
+
+```
+Khách hàng
+    ↓
+Website TMĐT (+ Chatbot AI tích hợp)
+    ↓
+Backend API ←→ MySQL
+    ↓                    ↘
+Hệ thống quản trị    PayOS (khi thanh toán online)
+```
+
+**Điểm cần nhấn khi bảo vệ:**
+- Chatbot chạy **song song** khi khách duyệt web, không phải bước sau Website
+- PayOS chỉ tham gia **tại checkout**, gọi qua API + webhook HMAC
+- Admin/Staff truy cập **cùng hệ thống**, route `/admin`, dữ liệu đồng bộ qua API
+
+**Ghi chú trình bày:** 1–2 phút; slide này là “bản đồ tổng thể” trước khi đi vào Use case (Slide 10) và kiến trúc 3-tier (Slide 13).
+
+---
+
 # CHƯƠNG 3 — PHÂN TÍCH & THIẾT KẾ
 
 ## Slide 10 — Use case tổng quan

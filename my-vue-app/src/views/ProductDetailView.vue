@@ -497,9 +497,9 @@ const fetchProduct = async () => {
 const isLiked = ref(false)
 const checkWishlistStatus = async () => {
   if (authStore.isLoggedIn && authStore.user?.id) {
-    const res = await getWishlist(authStore.user.id)
+    const res = await getWishlist()
     if (res && res.success && res.data) {
-      isLiked.value = res.data.some(item => String(item.product_id) === String(route.params.id))
+      isLiked.value = res.data.some(item => String(item.id) === String(route.params.id))
     }
   }
 }
@@ -508,7 +508,7 @@ const handleToggleWishlist = async () => {
   if (!authStore.isLoggedIn || !authStore.user?.id) {
     return ElMessage.warning('Vui lòng đăng nhập để lưu sản phẩm yêu thích!')
   }
-  const res = await toggleWishlist(authStore.user.id, product.value.id)
+  const res = await toggleWishlist(product.value.id)
   if (res && res.success) {
     isLiked.value = res.action === 'added'
     if (isLiked.value) {

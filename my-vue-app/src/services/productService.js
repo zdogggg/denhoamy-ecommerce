@@ -37,7 +37,8 @@ export const toggleHotDeal = async (id, isHotDeal) => {
     const response = await api.put('/products.php', { action: 'toggle_hot_deal', id, is_hot_deal: isHotDeal })
     return response.data
   } catch (error) {
-    return failFalse()
+    const message = error.response?.data?.message
+    return message ? failMessage(message) : failFalse()
   }
 }
 
