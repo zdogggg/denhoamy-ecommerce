@@ -12,7 +12,7 @@
             <p v-else class="error-text">Link không hợp lệ. Vui lòng yêu cầu link mới từ trang quên mật khẩu.</p>
           </div>
 
-          <el-form v-if="hasToken" :model="form" :rules="rules" ref="formRef" label-position="top">
+          <el-form v-if="hasToken" :model="form" :rules="rules" ref="formRef" label-position="top" @submit.prevent="handleSubmit">
             <el-form-item label="Mật khẩu mới" prop="password">
               <el-input v-model="form.password" type="password" show-password placeholder="Tối thiểu 6 ký tự" />
             </el-form-item>
@@ -20,7 +20,7 @@
               <el-input v-model="form.confirmPassword" type="password" show-password placeholder="Nhập lại mật khẩu" />
             </el-form-item>
 
-            <el-button class="gold-btn btn-submit" :loading="submitting" @click="handleSubmit">
+            <el-button class="gold-btn btn-submit" native-type="submit" :loading="submitting">
               ĐẶT LẠI MẬT KHẨU
             </el-button>
 

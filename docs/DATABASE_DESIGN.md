@@ -2,8 +2,9 @@
 
 > **RDBMS:** MySQL 8.0  
 > **Charset:** utf8mb4 (hỗ trợ tiếng Việt đầy đủ)  
-> **Tổng:** 21 bảng · 60+ sản phẩm seed data  
-> **Cập nhật:** 06/06/2026
+> **Tổng:** 22 bảng · 60+ sản phẩm seed data  
+> **Cập nhật:** 13/06/2026  
+> **Ôn bảo vệ (map Vue/PHP):** [CO_SO_DU_LIEU_VA_KET_NOI.md](presentation/CO_SO_DU_LIEU_VA_KET_NOI.md)
 
 ---
 

@@ -11,12 +11,12 @@
             <p>Nhập số điện thoại đã đăng ký. Chúng tôi sẽ gửi link đặt lại mật khẩu tới email của bạn.</p>
           </div>
 
-          <el-form :model="resetForm" :rules="rules" ref="formRef" label-position="top">
+          <el-form :model="resetForm" :rules="rules" ref="formRef" label-position="top" @submit.prevent="handleReset">
             <el-form-item label="Số điện thoại đã đăng ký" prop="phone">
               <el-input v-model="resetForm.phone" placeholder="Nhập số điện thoại..." />
             </el-form-item>
 
-            <el-button class="gold-btn btn-submit" :loading="submitting" @click="handleReset">
+            <el-button class="gold-btn btn-submit" native-type="submit" :loading="submitting">
               GỬI LINK KHÔI PHỤC
             </el-button>
 

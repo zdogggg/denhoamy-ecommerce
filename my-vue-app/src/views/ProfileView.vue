@@ -217,6 +217,7 @@ import { getStatusLabel, getStatusTagType } from '../utils/orderStatus'
 import { updateProfile } from '../services/userService'
 import { getWishlist, toggleWishlist } from '../services/wishlistService'
 import { useMobileLayout } from '../composables/useMobileLayout'
+import { formatPrice } from '../utils/format'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -240,8 +241,6 @@ const profileForm = ref({
   email: authStore.user?.email || '',
   address: authStore.user?.address || ''
 })
-
-const formatPrice = (val) => val ? val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '0'
 
 const fetchOrders = async () => {
   loading.value = true

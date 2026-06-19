@@ -43,7 +43,9 @@ onMounted(async () => {
 
   if (cartStore.items.length > 0) {
     const { updated } = await cartStore.syncPricesFromServer()
-    if (updated) toastInfo('Giá trong giỏ đã được cập nhật theo ưu đãi mới.')
+    if (updated && route.path !== '/reset-password') {
+      toastInfo('Giá trong giỏ đã được cập nhật theo ưu đãi mới.')
+    }
   }
 
   window.addEventListener('storage', handleStorageAuth)

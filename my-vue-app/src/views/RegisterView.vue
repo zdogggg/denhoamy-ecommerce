@@ -11,7 +11,7 @@
             <p>Vui lòng điền thông tin cá nhân</p>
           </div>
 
-          <el-form :model="regForm" :rules="rules" ref="formRef" label-position="top">
+          <el-form :model="regForm" :rules="rules" ref="formRef" label-position="top" @submit.prevent="handleRegister">
             <el-form-item label="Họ và tên" prop="name">
               <el-input v-model="regForm.name" placeholder="VD: Trần Minh Hiếu" />
             </el-form-item>
@@ -31,7 +31,7 @@
               <el-checkbox v-model="regForm.agreeTerms">Tôi đồng ý với các điều khoản và chính sách bảo mật</el-checkbox>
             </el-form-item>
 
-            <el-button class="gold-btn btn-submit" @click="handleRegister" :disabled="!regForm.agreeTerms">TẠO TÀI KHOẢN</el-button>
+            <el-button class="gold-btn btn-submit" native-type="submit" :disabled="!regForm.agreeTerms">TẠO TÀI KHOẢN</el-button>
 
             <div class="form-footer">
               <span>Đã có tài khoản? </span>

@@ -47,3 +47,9 @@ check_fks_output.json
 # OS folders
 .DS_Store
 Thumbs.db
+
+# Documentation / Explanations (Not pushed to Git)
+denhoamy_api/docs/
+my-vue-app/docs/explain/
+docs/Bai_Giai_Thich_Code/
+docs/HUONG_DAN_BAO_VE.md

@@ -9,7 +9,7 @@
             <h2>Đăng nhập</h2>
             <p>Vui lòng nhập thông tin tài khoản của bạn</p>
           </div>
-          <el-form :model="loginForm" :rules="rules" ref="formRef" label-position="top">
+          <el-form :model="loginForm" :rules="rules" ref="formRef" label-position="top" @submit.prevent="handleLogin">
             <el-form-item label="Tên đăng nhập / Số điện thoại" prop="username">
               <el-input v-model="loginForm.username" placeholder="Nhập tên đăng nhập hoặc Số điện thoại của bạn..." />
             </el-form-item>
@@ -24,7 +24,7 @@
               </div>
             </div>
 
-            <el-button class="gold-btn btn-submit" @click="handleLogin">ĐĂNG NHẬP</el-button>
+            <el-button class="gold-btn btn-submit" native-type="submit">ĐĂNG NHẬP</el-button>
 
             <div class="form-footer">
               <span>Chưa có tài khoản? </span>

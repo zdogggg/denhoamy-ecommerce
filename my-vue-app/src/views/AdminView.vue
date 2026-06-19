@@ -496,23 +496,55 @@ const handleChangePassword = async () => {
 
 <style scoped>
 
-
+/* ==========================================================================
+   Bo cuc layout flexbox chia lam hai phan chinh:
+   Sidebar o ben trai va vung Header, Main Content o ben phai.
+   ========================================================================== */
 .admin-wrapper { height: 100vh; width: 100vw; display: flex; }
+
+/* Thanh menu doc nam o ben trai cua trang admin */
 .sidebar { background-color: #1a222d; border-right: none; transition: width 0.3s; }
+
+/* Vung hop logo "DEN HOA MY" nam o goc tren cung ben trai cua sidebar */
 .logo-container { height: 60px; display: flex; align-items: center; justify-content: center; background-color: #1a222d; color: #fff; font-weight: bold; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+/* Danh sach cac muc menu nam tren sidebar */
 .admin-menu { border-right: none !important; }
+
+/* ==========================================================================
+   Su dung :deep() selector de de style mac dinh cua element plus.
+   Vue 3 scoped ngan khong cho CSS thay doi cac the con tu thu vien Element Plus,
+   do do ta bat buoc phai dung bo chon nay de ghi de thiet ke.
+   ========================================================================== */
+/* Kich thuoc chieu cao va co font chu cua cac muc menu tren sidebar */
 :deep(.el-menu-item), :deep(.el-sub-menu__title) { height: 50px; line-height: 50px; font-size: 15px; }
 :deep(.el-sub-menu .el-sub-menu__icon-arrow) { right: 12px !important; margin-top: -6px; }
 :deep(.el-menu-item .el-icon), :deep(.el-sub-menu__title .el-icon) { margin-right: 8px !important; width: 18px; text-align: center; }
+
+/* Hieu ung hover chuot vao cac muc menu tren sidebar: doi sang nen den xam va chu vang */
 :deep(.el-menu-item:hover), :deep(.el-sub-menu__title:hover) { background-color: #263445 !important; color: #D8B257 !important; }
+
+/* Muc menu dang duoc chon: co nen nhay vang gold nhe va duong vien vang canh phai lam diem nhan */
 :deep(.el-menu-item.is-active) { background-color: rgba(216, 178, 87, 0.1) !important; color: #D8B257 !important; border-right: 3px solid #D8B257; }
 :deep(.el-menu--inline) { background-color: #111a25 !important; }
 :deep(.el-menu--inline .el-menu-item) { padding-left: 50px !important; font-size: 14px; height: 45px; line-height: 45px; color: #909399; }
+
+/* ==========================================================================
+   Thanh Header tren cung ben phai, chua Breadcrumb va vung thong tin User
+   ========================================================================== */
 .header { background-color: #fff; display: flex; align-items: center; justify-content: space-between; height: 60px; border-bottom: 1px solid #e6e6e6; padding: 0 20px; }
+
+/* Vung gom ten admin, phieu cho va chuong thong bao o goc phia ben phai cua Header */
 .user-info-section { display: flex; align-items: center; gap: 18px; height: 100%; }
+
+/* Badge so luong mau do hien thi so chuong/so don hang cho duyet tren Header */
 .custom-badge { display: flex; align-items: center; }
+
+/* Cac nut nho tron o phia ben phai Header nhu: xem website, xem don hang, chuong thong bao */
 .header-icon-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; color: #606266; background-color: #f4f4f5; transition: all 0.3s ease; }
 .header-icon-btn:hover { background-color: #e9e9eb; color: #409EFF; }
+
+/* Khung popover danh sach thong bao don moi bung ra khi click chuong o Header */
 .notification-panel { display: flex; flex-direction: column; }
 .notif-header { background-color: #409EFF; color: white; padding: 12px 16px; font-size: 16px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; }
 .notif-count { background-color: white; color: #333; font-size: 12px; font-weight: bold; padding: 2px 8px; border-radius: 4px; }
@@ -521,16 +553,32 @@ const handleChangePassword = async () => {
 .notif-item:hover { background-color: #f9fafc; }
 .notif-dot { width: 8px; height: 8px; background-color: #f56c6c; border-radius: 50%; margin-top: 6px; margin-right: 12px; flex-shrink: 0; }
 .notif-content { font-size: 14px; color: #303133; line-height: 1.5; }
+
+/* Khoi thong tin nguoi dung (avatar va ten admin) o goc tren cung ben phai, ho tro click xem ca nhan */
 .user-profile { display: flex; align-items: center; gap: 10px; cursor: pointer; height: 36px; }
 .user-name { font-weight: 500; color: #606266; font-size: 14px; line-height: 1; }
+
+/* ==========================================================================
+   Mau sac border nam tren dinh cua cac o vuong thong ke (Card Statistic)
+   tai tab Thong ke tong quan trong Main Content.
+   ========================================================================== */
 .blue-line { border-top-color: #409EFF; }
 .green-line { border-top-color: #67C23A; }
 .orange-line { border-top-color: #E6A23C; }
+
+/* ==========================================================================
+   Vung noi dung hien thi chinh nam ben duoi thanh Header (Main Content)
+   ========================================================================== */
 .admin-wrapper { height: 100vh; width: 100vw; }
 .main-content { background-color: #f0f2f5; padding: 20px; }
 :deep(.el-progress-bar__inner) { transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
 :deep(.el-tabs__content) { overflow: visible; }
 
+/* ==========================================================================
+   Cau hinh in phieu hoat dong (@media print) khi an in hoa don bang Ctrl+P.
+   Tu dong an di Sidebar menu trai, Header tren va cac modal Dialog lam mo,
+   giup ban in hoa don dat hang sach dep va chi tieu nhat.
+   ========================================================================== */
 @media print {
   .admin-wrapper { display: none !important; }
   .el-dialog__wrapper, .el-overlay { display: none !important; }
